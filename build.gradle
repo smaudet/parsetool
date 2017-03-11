@@ -1,0 +1,60 @@
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins',
+                name: 'javafx-gradle-plugin', version: '8.8.0'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url = 'http://maptool.craigs-stuff.net/repo/'
+    }
+}
+
+dependencies {
+    compile group: 'net.rptools.rplib', name: 'rplib', version: '1.4.1.4'
+    compile group: 'net.rptools.dicelib', name:'dicelib', version: '1.4.0.1'
+    compile group: 'com.google.guava', name:'guava', version: '21.0'
+    compile group: 'com.google.inject', name:'guice', version: '4.1.0'
+    testCompile group: 'rhino', name: 'js', version: '1.6R2'
+    testCompile group: 'testng', name: 'testng', version: '6.11'
+}
+
+apply plugin: 'javafx-gradle-plugin'
+apply plugin: 'application'
+
+version='1.0.0-SNAPSHOT'
+project.version = version
+
+install {
+    repositories.mavenInstaller {
+        pom.version = project.version
+        pom.artifactId = 'parsetool'
+        pom.groupId = 'net.rptools'
+    }
+}
+
+mainClassName = 'net.rptools.parsetool.ParseTool'
+
+jfx {
+    verbose = true
+    mainClass = mainClassName
+    jfxMainAppJarName = 'parsetool-jfx.jar'
+    vendor = 'RPTools'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4.1'
+}
+
+
