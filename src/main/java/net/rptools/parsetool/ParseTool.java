@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import net.rptools.parser.Parser;
 
 import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Copyright smaudet on 3/5/17.
@@ -31,8 +32,8 @@ public class ParseTool extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
 
-    URL resource = getClass().getResource("/main.fxml");
-    if(resource == null) {
+    URL location = getClass().getResource("/main.fxml");
+    if(location == null) {
       System.err.println("Err, could not find fxml");
       System.exit(1);
     }
@@ -40,7 +41,9 @@ public class ParseTool extends Application {
     ParseToolModule module;
     module = new ParseToolModule();
     final Injector injector = Guice.createInjector(module);
-    FXMLLoader loader = new FXMLLoader(resource);
+    ResourceBundle resource;
+    resource = ResourceBundle.getBundle("strings");
+    FXMLLoader loader = new FXMLLoader(location, resource);
 
     loader.setControllerFactory(injector::getInstance);
 

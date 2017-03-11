@@ -1,0 +1,16 @@
+
+<!-- this was only for debugging -->
+<!--<left>-->
+<!--<VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">-->
+<!--<children>-->
+<!--<Label text="Variables Height" />-->
+<!--<TextField fx:id="variablesHD" />-->
+<!--<Label text="History Height" />-->
+<!--<TextField fx:id="historyHD" />-->
+<!--<Label text="LeftHeight" />-->
+<!--<TextField fx:id="leftHD" layoutX="10.0" layoutY="84.0" />-->
+<!--<Label layoutX="10.0" layoutY="42.0" text="Left max height" />-->
+<!--<TextField fx:id="leftMaxHD" layoutX="10.0" layoutY="110.0" />-->
+<!--</children>-->
+<!--</VBox>-->
+<!--</left>-->

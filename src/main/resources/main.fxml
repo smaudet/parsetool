@@ -6,11 +6,13 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.rptools.parsetool.ParseToolController">
    <center>
@@ -36,15 +38,39 @@
    <bottom>
       <HBox prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField id="evaluationField" fx:id="evalEntry" maxWidth="1.7976931348623157E308" onAction="#evalExpression" onKeyPressed="#handleKeyUp" prefHeight="30.0" promptText="Enter an expression for evaluation..." HBox.hgrow="ALWAYS" />
+            <TextField fx:id="evalEntry" maxWidth="1.7976931348623157E308" onAction="#evalExpression" onKeyPressed="#handleKeyUp" prefHeight="30.0" promptText="Enter an expression for evaluation..." HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#evalExpression" prefHeight="30.0" text="Evaluate" />
          </children>
       </HBox>
    </bottom>
    <right>
-      <ScrollPane id="variableScroll" fx:id="variablesScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+     <ScrollPane fx:id="leftScroll" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <ListView fx:id="variablesListView" prefHeight="200.0" prefWidth="200.0" />
-         </content></ScrollPane>
+            <VBox fx:id="leftVBox" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TitledPane fx:id="variablesViewPane" animated="false" expanded="false" style="-fx-background-color: red;" text="Variables" VBox.vgrow="SOMETIMES">
+                     <content>
+                        <ListView fx:id="variablesListView" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+                  <TitledPane fx:id="historyViewPane" animated="false" style="-fx-background-color: green;" text="History" VBox.vgrow="SOMETIMES">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                          <children>
+                              <HBox fx:id="hboxHistoryView" alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearHistory" text="Clear History" />
+                                 </children>
+                              </HBox>
+                            <ListView fx:id="historyListView" prefHeight="200.0" prefWidth="200.0"  VBox.vgrow="ALWAYS" />
+                          </children>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+                  <VBox prefHeight="0.0" prefWidth="0.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </content>
+     </ScrollPane>
    </right>
 </BorderPane>
